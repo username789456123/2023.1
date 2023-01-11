@@ -1,0 +1,49 @@
+#include<stdio.h>
+
+int* QuickSort(int arr[], int L, int R) 
+{
+      if(L>R) return;
+      int left=L,right=R;
+	// 如果 左下标 = 右下标
+	
+	int pivot = arr[left];
+
+	while (left<right) 
+    {
+		while (arr[right]>= pivot && left<right)
+        {
+			right--;//找到比p点小的 
+		}
+        if(left<right)
+        {
+            arr[left]= arr[right];//把找到的比p点小的放到左边 
+            left++;
+        }
+		
+
+		while (arr[left]<= pivot && left<right) 
+        {
+			left++;//找到比p点大的 
+		}
+
+		if(left<right)
+        {
+            arr[right] = arr[left];//同理，把找到的比p点大的放到右边 
+            right--;
+        }
+
+        if(left>=right)
+        {
+            arr[left] = pivot;
+        }
+	}	QuickSort(arr, L, right - 1);
+	QuickSort(arr, right + 1, R);
+}
+int main()
+{   int i;
+    int arr[]={1,23,45,3,4,67,34,53,56,3,2};
+    QuickSort(arr, 0, 10);
+    for(i=0;i<11;i++)
+    printf("%d,",arr[i]);
+    //system("pause");
+}
