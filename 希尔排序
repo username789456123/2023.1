@@ -1,0 +1,28 @@
+#include <stdio.h>
+#define size 9
+void shell_sort(int a[] , int len);
+void print_arr(int a[] , int len){
+	for(int i = 0 ; i < size ; i ++){
+		printf("%d," , a[i]);
+	}
+	printf("\n");
+}
+int main(){
+	int a[size] = {8,2,3,4,3,6,6,3,9};
+	shell_sort(a , size);
+//	print_arr(a , size);
+}
+
+void shell_sort(int a[] , int len){
+	int i , j , key , inc;
+	for(inc = len / 2 ; inc > 0 ; inc /= 2){
+		for(i = inc ; i < len ; i++){
+			key = a[i];
+			for(j = i ; j >= inc && key < a[j - inc] ; j -= inc){
+				a[j] = a[j - inc];
+			}
+			a[j] = key;
+		}
+		print_arr(a , size);
+	}
+}
