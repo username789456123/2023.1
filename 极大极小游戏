@@ -1,0 +1,18 @@
+ #define Max(a, b) ((a) > (b) ? (a) : (b))
+ #define Min(a, b) ((a) < (b) ? (a) : (b))
+
+ int minMaxGame(int* nums, int numsSize){     
+    if(numsSize == 1){
+         return nums[0];
+    }
+    numsSize /= 2;
+    int newNums[numsSize];
+    for(int i = 0 ; i < numsSize ;i++){
+         if(i % 2 == 0){
+             newNums[i] = Min(nums[2 * i] , nums[i * 2 +1]);
+         }else{
+             newNums[i] = Max(nums[2 * i] , nums[i * 2 + 1]);
+         }
+    }
+   return minMaxGame(newNums , numsSize);
+}
