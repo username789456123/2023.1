@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+void printarr(int arr[] , int len){
+	for(int i = 0 ; i < len ; i ++){
+		printf("%d" , arr[i]);
+	}
+	printf("\n");
+}
+
+void swap(int arr[] , int i , int j){
+	int temp = 0;
+	temp = arr[i];
+	arr[i] = arr[j];
+	arr[j] = temp;
+}
+
+void prem(int arr[] , int start , int end){
+	if(start == end){
+		printarr(arr , end + 1);
+	}
+	else{
+		for(int i = 0 ; i < end ; i++){
+		swap(arr , start , end);
+		prem(arr , start+1 , end);
+		swap(arr , start , 1);
+		}
+	}
+}
+
+int main(){
+	int a[3] = {1,2,3};
+	prem(a , 0 , 2);
+} 
